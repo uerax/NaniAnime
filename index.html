@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>随机 Bangumi 动画</title>
+  </head>
+  <body>
+    <main class="page">
+      <section class="card">
+        <p class="eyebrow">Random Anime Daily</p>
+        <h1>随机 Bangumi 推荐</h1>
+        <p class="description">不知道看什么？交给天意选择</p>
+
+        <fieldset class="type-picker" aria-label="随机类型">
+          <legend>随机类型</legend>
+          <label>
+            <input type="radio" name="subject-type" value="anime" checked />
+            <span>动漫</span>
+          </label>
+          <label>
+            <input type="radio" name="subject-type" value="book" />
+            <span>漫画小说</span>
+          </label>
+          <label>
+            <input type="radio" name="subject-type" value="drama" />
+            <span>三次元</span>
+          </label>
+        </fieldset>
+
+        <div id="state" class="state">正在寻找条目...</div>
+
+        <article id="anime" class="anime hidden">
+          <a id="subject-link" class="cover-link" href="#" target="_blank" rel="noopener noreferrer">
+            <img id="cover" class="cover" alt="" />
+          </a>
+          <div class="info">
+            <div class="meta-row">
+              <span id="subject-id" class="id"></span>
+              <span id="score" class="score"></span>
+            </div>
+            <h2 id="title"></h2>
+            <p id="original-title" class="original-title"></p>
+          </div>
+        </article>
+
+        <button id="refresh" type="button">换一个</button>
+      </section>
+    </main>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
