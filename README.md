@@ -5,6 +5,8 @@ NaniAnime 是一个基于 Bangumi API 的随机动漫推荐工具。告别选择
 
 ---
 
+![image](https://github.com/uerax/NaniAnime/blob/master/work.png)
+
 
 # Cloudflare Page
 
