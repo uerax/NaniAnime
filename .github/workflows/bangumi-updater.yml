@@ -30,7 +30,7 @@ jobs:
           node-version: '24' 
 
       - name: Run Scraper Script
-        run: node main.js 
+        run: node scripts/generate-subject-ids.js
         env:
           PAGE_LIMIT: 50
           PAGE_CONCURRENCY: 3
