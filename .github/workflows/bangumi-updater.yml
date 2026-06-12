@@ -1,0 +1,53 @@
+name: Auto Update Bangumi Subject IDs
+
+on:
+  # 允许你随时在 GitHub 网页上手动点击运行
+  workflow_dispatch: 
+  # 定时任务：每天北京时间凌晨 3 点自动执行 (UTC 时间 19:00)
+  schedule:
+    - cron: '0 19 * * *'
+
+# 设置权限：允许 Action 将更新后的 JSON 文件推送到你的仓库
+permissions:
+  contents: write
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # 确保使用 Node.js 18+ 以原生支持 fetch
+
+      - name: Run Scraper Script
+        # 注意：这里假设你的脚本名为 main.js 且放在根目录。
+        # 如果在 scripts 文件夹里，请改为 node scripts/generate-subject-ids.js
+        run: node scripts/generate-subject-ids.js
+        env:
+          # 你可以在这里调整脚本的环境变量，比如稍微调低并发防止被墙
+          PAGE_LIMIT: 50
+          PAGE_CONCURRENCY: 3
+          MAX_RETRIES: 3
+
+      - name: Commit and Push changes
+        run: |
+          # 配置 Git 机器人身份
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          
+          # 将变动的文件添加到暂存区 (匹配你的输出路径)
+          git add public/data/subject-ids/*.json
+          
+          # 检查是否有文件变动，如果有则提交并推送
+          if ! git diff-index --quiet HEAD; then
+            git commit -m "chore: 🤖 auto update bangumi subject IDs"
+            git push
+            echo "✅ 数据更新已推送到仓库！"
+          else
+            echo "💤 数据没有变化，跳过提交。"
+          fi

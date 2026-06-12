@@ -23,19 +23,19 @@ const SUBJECT_TYPES = {
     type: 2,
     label: '动漫',
     fallbackTotal: 28378,
-    idPoolUrl: '/data/subject-ids/anime.json',
+    idPoolUrl: 'https://raw.githubusercontent.com/uerax/NaniAnime/refs/heads/master/public/data/subject-ids/anime.json',
   },
   book: {
     type: 1,
     label: '漫画小说',
     fallbackTotal: 382262,
-    idPoolUrl: '/data/subject-ids/book.json',
+    idPoolUrl: 'https://raw.githubusercontent.com/uerax/NaniAnime/refs/heads/master/public/data/subject-ids/book.json',
   },
   drama: {
     type: 6,
     label: '三次元',
     fallbackTotal: 26155,
-    idPoolUrl: '/data/subject-ids/drama.json',
+    idPoolUrl: 'https://raw.githubusercontent.com/uerax/NaniAnime/refs/heads/master/public/data/subject-ids/drama.json',
   },
 };
 const DEBUG_LOGS = false;
